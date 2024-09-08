@@ -12,12 +12,12 @@ DISPLAY_STANDOFFS = [
 ];
 
 BOARD_DEPTH = 44.45;
-BOARD_X_INSET = 1.2;
+BOARD_X_INSET = 0.2;
 BOARD_Z_OFFSET = 11;
 
 HEIGHT = 36; // of the case, excludes the backplate
 
-SURFACE = 2;
+SURFACE = 1.5;
 
 DIFFUSER_HEIGHT = 0.2;
 
@@ -36,8 +36,14 @@ RTC_STANDOFF_HEIGHT = 5;
 SCREW_HEIGHT = 6.3;
 SCREW_HEAD_DIAMETER = 4.1;
 SCREW_HEAD_HEIGHT = 1.7;
-SCREW_SHAFT_DIAMETER = 1.9;
-
+SCREW_SHAFT_DIAMETER = 1.8;
+	
+BUTTON_DEPTH = 7.8;
+BUTTON_HEIGHT = 4.2;
+BUTTON_SPACING = 1.9;
+BUTTON_Z_OFFSET = 1.3;
+BUTTON_START_Y = 2.5;
+	
 function total_width() = DISPLAY_WIDTH + DISPLAY_SPACING * 2 + SURFACE * 2;
 function total_depth() = DISPLAY_DEPTH + DISPLAY_SPACING * 2 + SURFACE * 2;
 function board_total_height() = DISPLAY_HEIGHT + BOARD_Z_OFFSET;
@@ -99,6 +105,13 @@ module case() {
 		usb_c();
 		
 		screws();
+		
+		for (i = [0 : 2]) {
+			y = total_depth() / 2 - BOARD_DEPTH / 2 + BUTTON_START_Y + i * (BUTTON_DEPTH + BUTTON_SPACING);
+		
+			translate([0, y, HEIGHT - BOARD_Z_OFFSET - SURFACE - BUTTON_HEIGHT + BUTTON_Z_OFFSET])
+			cube([SURFACE, BUTTON_DEPTH, BUTTON_HEIGHT]);
+		}
 	}
 }
 
@@ -112,17 +125,13 @@ module screw() {
 module screws() {
 	locations = [
 		[10, SCREW_HEIGHT, 90, 0],
-		[total_width() / 3, SCREW_HEIGHT, 90, 0],
-		[2 * (total_width() / 3), SCREW_HEIGHT, 90, 0],
+		[total_width() / 2, SCREW_HEIGHT, 90, 0],
 		[total_width() - 10, SCREW_HEIGHT, 90, 0],
 		[10, total_depth() - SCREW_HEIGHT, 270, 0],
-		[total_width() / 3, total_depth() - SCREW_HEIGHT, 270, 0],
-		[2 * (total_width() / 3), total_depth() - SCREW_HEIGHT, 270, 0],
+		[total_width() / 2, total_depth() - SCREW_HEIGHT, 270, 0],
 		[total_width() - 10, total_depth() - SCREW_HEIGHT, 270, 0],
-		[SCREW_HEIGHT, total_depth() / 3, 0, 270, 0],
-		[SCREW_HEIGHT, 2 * (total_depth() / 3), 0, 270, 0],
-		[total_width() - SCREW_HEIGHT, total_depth() / 3, 0, 90, 0],
-		[total_width() - SCREW_HEIGHT, 2 * (total_depth() / 3), 0, 90, 0]
+		[SCREW_HEIGHT, total_depth() / 2, 0, 270, 0],
+		[total_width() - SCREW_HEIGHT, total_depth() / 2, 0, 90, 0]
 	];
 
 	for (location = locations) {
@@ -170,7 +179,7 @@ module backplate() {
 			for (x = [RADIUS + SURFACE, SURFACE + DISPLAY_SPACING * 2 + DISPLAY_WIDTH - RADIUS]) {
 				for (y = [RADIUS + SURFACE, SURFACE + DISPLAY_SPACING * 2 + DISPLAY_DEPTH - RADIUS]) {
 					translate([x, y, 0])
-					cylinder(r = RADIUS, h = 8, $fn = 36);
+					cylinder(r = RADIUS, h = 6, $fn = 36);
 				}
 			}
 		}
@@ -180,7 +189,7 @@ module backplate() {
 			for (x = [RADIUS + SURFACE * 2, DISPLAY_SPACING * 2 + DISPLAY_WIDTH - RADIUS]) {
 				for (y = [RADIUS + SURFACE * 2, DISPLAY_SPACING * 2 + DISPLAY_DEPTH - RADIUS]) {
 					translate([x, y, 0])
-					cylinder(r = RADIUS, h = 8, $fn = 36);
+					cylinder(r = RADIUS, h = 6, $fn = 36);
 				}
 			}
 		}
@@ -189,8 +198,8 @@ module backplate() {
 	}
 	
 	// board standoffs
-	for (x = [10.85, 51.45]) {
-		for (y = [30.65, 50.35]) {
+	for (x = [9.32, 49.95]) {
+		for (y = [30.15, 49.85]) {
 			translate([x, y, board_total_height()])
 			render()
 			difference() {
@@ -227,7 +236,7 @@ module backplate() {
 }
 
 //color("red") screws();
-case();
-//backplate();
+//case();
+backplate();
 //display();
 //board();
