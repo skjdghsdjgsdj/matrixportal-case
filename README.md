@@ -1,5 +1,7 @@
 # MatrixPortal case
 
+![Assembled product running the MatrixPortal Baby Buddy software](assembled.jpg)
+
 This is a 3D printed enclosure that lets you put an RGB LCD matrix behind a diffuser and run CircuitPython or Arduino code on it.
 
 ## Electronics needed
