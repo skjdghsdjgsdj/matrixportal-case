@@ -10,7 +10,7 @@ Prices are USD as of the authoring of this document.
 | ---- | ----- |
 |  2.5mm pitch 64x32 LED matrix | $39.99 ([Adafruit](https://www.adafruit.com/product/5036), [DigiKey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5036/14671681), [Mouser](https://www.mouser.com/ProductDetail/Adafruit/5036)) |
 | Adafruit STEMMA QT RTC* | $4.95 ([Adafruit](https://www.adafruit.com/product/5189), [DigiKey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/5189/15189154), [Mouser](https://www.mouser.com/ProductDetail/Adafruit/5189)) |
-| 100mm STEMMA QT cable* | $0.95 | $0.95 (([Adafruit](https://www.adafruit.com/product/4210), [DigiKey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4210/10230021), [Mouser](https://www.mouser.com/ProductDetail/Adafruit/4210)) |
+| 100mm STEMMA QT cable* | $0.95 (([Adafruit](https://www.adafruit.com/product/4210), [DigiKey](https://www.digikey.com/en/products/detail/adafruit-industries-llc/4210/10230021), [Mouser](https://www.mouser.com/ProductDetail/Adafruit/4210)) |
 
 \* RTC and STEMMA QT cables only needed if you need one, like with the [paired Baby Buddy software](https://github.com/skjdghsdjgsdj/matrixportal-babybuddy).
 
